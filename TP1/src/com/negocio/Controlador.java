@@ -4,36 +4,36 @@ package com.negocio;
 
 import java.io.File;
 import java.io.IOException;
-
 import java.util.List;
+
 
 
 import com.gui.FormEvent;
 import com.persistencia.*;
+
+import encapsulamiento.Frase;
 public class Controlador {
 	Repositorio db = new Repositorio(); 
-	GeneradorFrases generador;
+//	GeneradorFrases generador;
 	
 	public List<Frase> getPalabra(){
+//		return db.getPalabra();
 		return db.getPalabra();
 	}	
-	public void addfrase(FormEvent ev) {		
-			String tema = ev.getTema();
-			int cantidad = ev.getCantidad();
-			String agresibidad = ev.getAgresibidad();
-			
-			generador = new GeneradorFrases(tema, cantidad,agresibidad);			
-			mostrar();
+	public void addfrase(FormEvent ev) {			
+			db.setTema(ev.getTema());
+			db.setCantidad(ev.getCantidad());
+			db.setAgresibidad(ev.getAgresibidad());	
+			System.out.println(ev.getAgresibidad());
+			db.generador2();
+//			mostrar();
 		}
-	public List<Frase> mostrar(){		
-		return generador.getFrase();
+	public List<Frase> mostrar(){	
+		
+		return db.getFrase();
 	}
 	
 
-	public List<Frase> getPerson(){
-		return generador.getFrase();
-	}
-		
 	
 	
 	public void deletePalabra(int index) {

@@ -8,7 +8,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 
-import com.persistencia.GeneradorFrases;
 
 public class TextPanel extends JPanel{ 
 	private JTextArea textArea;

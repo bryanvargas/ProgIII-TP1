@@ -7,15 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Random;
-import java.util.TreeMap;
+
 import java.util.prefs.Preferences;
 
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JDialog;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -34,7 +31,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.negocio.Controlador;
-//import com.persistencia.Frase;
+
 
 public class MainFrame extends JFrame {	
 
@@ -90,21 +87,23 @@ public class MainFrame extends JFrame {
 
 		
 		
-		formPanel.setFormListener(new FormListener() {
+		formPanel.setFormListener(new FormListener() {			
 			public void formEventOccurred(FormEvent e) {
-				 String name = e.getTema();
+				messagePanel.clearList();
+//				 String name = e.getTema();
 //				 int occupation = e.getCantidad();
-				 int occupation = e.getCantidad();				
-				 String ageCat = e.getAgresibidad();				
+//				 int occupation = e.getCantidad();				
+//				 String ageCat = e.getAgresibidad();				
 //				 textPanel.appendText(name + ": " +occupation+ ": "+ ageCat+
 //				 ", " + "\n");
-				 textPanel.appendText(name + ": " +occupation+ ": "+ ageCat+
-						 ", " + "\n");				 
+//				 textPanel.appendText(name + ": " +occupation+ ": "+ ageCat+
+//						 ", " + "\n");				 
 //				 System.out.println(tablePanel.columna(2, 3));
 				 controlador.addfrase(e);
+			
 				 messagePanel.setData(controlador.mostrar());
 //					controlador.addPerson(e);
-				 tablePanel.refresh();	
+				 
 			}
 		});
 		

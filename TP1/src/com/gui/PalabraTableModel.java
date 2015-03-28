@@ -1,11 +1,13 @@
 package com.gui;
 import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
-import com.persistencia.Frase;
+
+import encapsulamiento.Frase;
 
 public class PalabraTableModel extends AbstractTableModel {
 	private List<Frase> db;
-	private String[] colName = {"Articulo", "Sustantivo", "Verbo", "Preposicion"};  
+	private String[] colName = {"Articulo", "Sustantivo", "Verbo", "Preposicion","Adjetivo","Adverbio"};  
 	
 	public PalabraTableModel() {		
 	}
@@ -38,7 +40,13 @@ public class PalabraTableModel extends AbstractTableModel {
 			return palabra.getVerbo();			
 		case 3:
 			return palabra.getPreposicion();
+		case 4:
+			return palabra.getPreposicion();
+		case 5:
+			return palabra.getPreposicion();
+		
 		}
+		
 		return null;
 	}
 

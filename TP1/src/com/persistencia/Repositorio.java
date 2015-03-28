@@ -10,38 +10,71 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import com.gui.TablePanel;
+
+import encapsulamiento.Frase;
+
 public class Repositorio {
-private List<Frase> frase;	
-private List<GeneradorFrases> oracion;
-//static ArrayList rosterList = new ArrayList();
-	public Repositorio() {
-		this.frase = new LinkedList<Frase>();        
+private List<Frase> ListaPalabras;	
+private List<Frase> frase;
+
+private int cantidad;
+private String tema;
+private String agresibidad;
+private TablePanel tablaPanel;
+	public Repositorio() {		
+		this.ListaPalabras = new LinkedList<Frase>();  	
+		tablaPanel = new TablePanel();
+		tablaPanel.setData(this.getPalabra());
+		frase = new ArrayList<Frase>();
 		creatArr();
 	}
 	
-	public void addPalabra(GeneradorFrases frase){
-		this.oracion.add(frase);
-	}
-	
 	public void removePalabra(int index){
-		frase.remove(index);
+		ListaPalabras.remove(index);
 	}
 	
 	public List<Frase> getPalabra(){
-		return Collections.unmodifiableList(frase);
+		return Collections.unmodifiableList(ListaPalabras);
 	}
 	
 	public int getRow(){
-		return frase.size();
+		return ListaPalabras.size();
 	}	
-	
-	
+
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		
+		this.cantidad = cantidad;
+	}
+
+	public String getTema() {
+		return tema;
+	}
+
+	public void setTema(String tema) {
+		this.tema = tema;
+	}
+
+	public String getAgresibidad() {
+		return agresibidad;
+	}
+
+	public void setAgresibidad(String agresibidad) {
+		this.agresibidad = agresibidad;
+	}
+
 	private  void creatArr()
 	  {
 	     BufferedReader br = null;	      
@@ -56,7 +89,8 @@ private List<GeneradorFrases> oracion;
 	      {
 	    	  a= rnd.nextInt(4);
 	        String [] rowfields = line.split("\\.");
-	        frase.add(new Frase(rowfields[0],rowfields[1],rowfields[2],rowfields[3]));
+	        
+	        ListaPalabras.add(new Frase(rowfields[0],rowfields[1],rowfields[2],rowfields[3],rowfields[4],rowfields[5]));
 	        line = br.readLine();
 	       }	      
 	    }
@@ -74,7 +108,7 @@ private List<GeneradorFrases> oracion;
 		FileOutputStream fos = new FileOutputStream(file);
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		
-		Frase[] persons = frase.toArray(new Frase[frase.size()]);
+		Frase[] persons = ListaPalabras.toArray(new Frase[ListaPalabras.size()]);
 		
 		oos.writeObject(persons);
 		oos.close();
@@ -86,8 +120,8 @@ private List<GeneradorFrases> oracion;
 		
 		try {
 			Frase[] persons = (Frase[])ois.readObject();
-			frase.clear();
-			frase.addAll(Arrays.asList(persons));
+			ListaPalabras.clear();
+			ListaPalabras.addAll(Arrays.asList(persons));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,5 +134,44 @@ private List<GeneradorFrases> oracion;
 		// TODO Auto-generated method stub
 		
 	}
+	
+
+	
+	
+	public void generador2(){	
+		frase.clear();
+		for (int j = 0; j < getCantidad(); j++) {				 			  
+			ArrayList<String> miFrase = new ArrayList<String>();
+			miFrase.add(palabra(0));System.out.println("hola mundo");
+			miFrase.add(palabra(1));
+			miFrase.add(palabra(2));
+			miFrase.add(palabra(3));
+			miFrase.add(palabra(0));
+			miFrase.add(palabra(1));
+			System.out.println("hola");
+			addFrase(new Frase(miFrase));		 
+		}
+		
+	}
+	public void addListaPalabras(Frase palabra){
+		ListaPalabras.add(palabra);
+	}
+	public String palabra(int columna){
+		String palabra = "";		
+		palabra = tablaPanel.columna(new Random().nextInt(6),columna);
+		return palabra;
+	}
+	public List<Frase> getFrase() {
+		return frase;
+	}
+
+	public void setFrase(List<Frase> frase) {
+		this.frase = frase;
+	}
+	public void addFrase(Frase palabra){
+		frase.add(palabra);
+	}
+
+
 
 }

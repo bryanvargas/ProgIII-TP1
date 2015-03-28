@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import com.persistencia.Frase;
+import encapsulamiento.Frase;
 
 
 public class TablePanel extends JPanel{

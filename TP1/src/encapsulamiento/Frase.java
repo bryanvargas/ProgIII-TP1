@@ -1,38 +1,34 @@
-package com.persistencia;
+package encapsulamiento;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
-public class Frase implements Serializable{
-
-	
-	private static final long serialVersionUID = 5372008368050494797L;
-	private static int count  = 0;
-	private String articulo, sustantivo, verbo,preposicion, pronombre;
+public class Frase implements Serializable{	
+	private static final long serialVersionUID = 5372008368050494797L;	
+	private String articulo, sustantivo,sustantivo2,sustantivo3,sustantivo4, verbo,preposicion, preposicion2,preposicion3 ,pronombre, adjetivo, adverbio;
 	private ArrayList<String> frase;
 	
 	
 	public Frase() {
 		
 	}
-	public Frase(String articulo, String sustantivo, String verbo, String preposicion) {
+	public Frase(String articulo, String sustantivo, String verbo, String preposicion, String adjetivo,String advervio) {
 		
 		this.articulo = articulo;
 		this.sustantivo = sustantivo;
 		this.verbo = verbo;
 		this.preposicion = preposicion;
+		this.adjetivo = adjetivo;
+		this.adverbio = advervio;
 	}
 	public Frase(ArrayList<String> frase) {
 		this.frase = frase;
 	}
 
 	
-//	public Frase(ArrayList<String> arrayList) {
-//		// TODO Auto-generated constructor stub
-//	}
-	////**************/////////////
+
 	public String getSustantivo() {
 		return sustantivo;
 	}
@@ -57,10 +53,7 @@ public class Frase implements Serializable{
 	public void setAdjetivo(String adjetivo) {
 		this.preposicion = adjetivo;
 	}
-//	@Override
-//	public String toString() {
-//		return articulo + " "+ sustantivo+ " " + verbo + " " + preposicion;
-//	}
+	
 	public ArrayList<String> getFrase() {
 		return frase;
 	}
@@ -73,7 +66,7 @@ public class Frase implements Serializable{
 		for (String elem : frase) {
 			f += elem + " ";
 		}
-		System.out.println(f);
+//		System.out.println(f);
 		return f;
 	}
 	
